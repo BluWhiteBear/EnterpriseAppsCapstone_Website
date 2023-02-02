@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreadcrumsAdmin", "BreadcrumsAdmin\BreadcrumsAdmin.csproj", "{5951B794-D384-4D76-B59F-A3283B5F29C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5951B794-D384-4D76-B59F-A3283B5F29C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5951B794-D384-4D76-B59F-A3283B5F29C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5951B794-D384-4D76-B59F-A3283B5F29C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5951B794-D384-4D76-B59F-A3283B5F29C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {383B1D3B-5824-4ABA-B4D8-7ECEBD74F527}
+	EndGlobalSection
+EndGlobal
