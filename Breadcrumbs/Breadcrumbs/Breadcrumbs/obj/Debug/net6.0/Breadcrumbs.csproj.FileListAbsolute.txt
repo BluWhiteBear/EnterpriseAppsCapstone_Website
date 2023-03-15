@@ -272,3 +272,4 @@ C:\Users\Blu\Documents\GitHub\EnterpriseAppsCapstone_Website\Breadcrumbs\Breadcr
 C:\Users\Blu\Documents\GitHub\EnterpriseAppsCapstone_Website\Breadcrumbs\Breadcrumbs\Breadcrumbs\obj\Debug\net6.0\Breadcrumbs.genruntimeconfig.cache
 C:\Users\Blu\Documents\GitHub\EnterpriseAppsCapstone_Website\Breadcrumbs\Breadcrumbs\Breadcrumbs\obj\Debug\net6.0\ref\Breadcrumbs.dll
 C:\Users\Blu\Documents\GitHub\EnterpriseAppsCapstone_Website\Breadcrumbs\Breadcrumbs\Breadcrumbs\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Blu\Documents\GitHub\EnterpriseAppsCapstone_Website\Breadcrumbs\Breadcrumbs\Breadcrumbs\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll

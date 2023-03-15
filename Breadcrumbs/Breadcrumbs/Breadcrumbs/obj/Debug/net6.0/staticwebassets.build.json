@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VKEqby3PRlbzOnNeIu1woy5uRDITP/FbpkQlspvoB1Y=",
+  "Hash": "5zjO8RJ5ZmGsmPfYgiIWIt5LwWfNcs7MRRa0NOhdDQc=",
   "Source": "Breadcrumbs",
   "BasePath": "_content/Breadcrumbs",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Blu\\Documents\\GitHub\\EnterpriseAppsCapstone_Website\\Breadcrumbs\\Breadcrumbs\\Breadcrumbs\\wwwroot\\img\\breadcrumbs2.png",
+      "SourceId": "Breadcrumbs",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Blu\\Documents\\GitHub\\EnterpriseAppsCapstone_Website\\Breadcrumbs\\Breadcrumbs\\Breadcrumbs\\wwwroot\\",
+      "BasePath": "_content/Breadcrumbs",
+      "RelativePath": "img/breadcrumbs2.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\breadcrumbs2.png"
     },
     {
       "Identity": "C:\\Users\\Blu\\Documents\\GitHub\\EnterpriseAppsCapstone_Website\\Breadcrumbs\\Breadcrumbs\\Breadcrumbs\\wwwroot\\js\\site.js",
