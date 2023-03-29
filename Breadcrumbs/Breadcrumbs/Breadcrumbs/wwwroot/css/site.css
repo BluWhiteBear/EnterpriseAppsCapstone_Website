@@ -16,3 +16,19 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.navbar-hype {
+    background-image: linear-gradient(to right, #DB415B, #F6757A);
+}
+
+.bg-hype {
+    background-image: linear-gradient(to bottom, #5F6985, #343B4F)
+}
+
+.bg-hype-secondary {
+    background-image: linear-gradient(to bottom, #161929, #282C44);
+}
+
+.round-sm {
+    border-radius:10px !important;
+}

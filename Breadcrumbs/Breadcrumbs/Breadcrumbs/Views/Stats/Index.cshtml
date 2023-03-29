@@ -2,6 +2,41 @@
 @{
     ViewData["Title"] = "Stats";
 }
+@model Breadcrumbs.Models.Stats
 
 <h1>Stats</h1>
+
+<h2>Overview</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DestinationCount)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.UserCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.LocationCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DestinationCount)
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Trending Location</h2>
+@Html.DisplayFor(model => model.MostDestinations)
+
 
