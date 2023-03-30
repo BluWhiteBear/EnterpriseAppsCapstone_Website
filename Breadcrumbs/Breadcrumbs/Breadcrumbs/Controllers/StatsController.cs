@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Breadcrumbs.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Breadcrumbs.Controllers
 {
@@ -12,8 +13,9 @@ namespace Breadcrumbs.Controllers
         {
             _context = context;
         }
-        
+
         // return the count of all locations
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var stats = new Stats();

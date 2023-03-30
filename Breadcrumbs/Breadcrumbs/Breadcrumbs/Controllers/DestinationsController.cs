@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Breadcrumbs.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Breadcrumbs.Controllers
 {
@@ -19,13 +20,21 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: Destinations
-        public async Task<IActionResult> Index()
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Index(string searchString)
         {
-            var breadcrumbsContext = _context.Destinations.Include(d => d.Location);
-            return View(await breadcrumbsContext.ToListAsync());
+            var destinations = from d in _context.Destinations select d; ;
+            if (searchString != null)
+            {
+                destinations = destinations.Where(d => d.DestinationName.Contains(searchString));
+                ViewData["CurrentFilter"] = searchString;
+            }
+
+            return View(await destinations.AsNoTracking().ToListAsync());
         }
 
         // GET: Destinations/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Destinations == null)
@@ -45,6 +54,7 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: Destinations/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "LocationId");
@@ -56,6 +66,7 @@ namespace Breadcrumbs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("DestinationId,DestinationName,DestinationTag,Directions,LocationId,ImgId,UserId")] Destination destination)
         {
             if (ModelState.IsValid)
@@ -69,6 +80,7 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: Destinations/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Destinations == null)
@@ -90,6 +102,7 @@ namespace Breadcrumbs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("DestinationId,DestinationName,DestinationTag,Directions,LocationId,ImgId,UserId")] Destination destination)
         {
             if (id != destination.DestinationId)
@@ -122,6 +135,7 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: Destinations/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Destinations == null)
@@ -143,6 +157,7 @@ namespace Breadcrumbs.Controllers
         // POST: Destinations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Destinations == null)

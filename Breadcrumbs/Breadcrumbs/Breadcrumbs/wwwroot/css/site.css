@@ -17,6 +17,51 @@ body {
   margin-bottom: 60px;
 }
 
+
+label {
+    color: grey !important;
+}
+
+.form-label {
+    color: grey !important;
+}
+
+h1 {
+    color: white !important;
+}
+
+h2 {
+    color: white !important;
+}
+
+h3 {
+    color: white !important;
+}
+
+h4 {
+    color: white !important;
+}
+
+dt {
+    color: white !important;
+}
+
+dd {
+    color: white !important;
+}
+
+.control-label {
+    color: white !important;
+}
+
+tr {
+    color: white !important;
+}
+
+td {
+    color: red !important;
+}
+
 .navbar-hype {
     background-image: linear-gradient(to right, #DB415B, #F6757A);
 }

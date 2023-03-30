@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Breadcrumbs.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Breadcrumbs.Controllers
 {
@@ -19,12 +20,22 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: Locations
-        public async Task<IActionResult> Index()
+        [Authorize]
+        public async Task<IActionResult> Index(string searchString)
         {
-              return View(await _context.Locations.ToListAsync());
+            var locations = from l in _context.Locations select l;;
+            if (searchString != null)
+            {
+                locations = locations.Where(l => l.LocationName.Contains(searchString));
+                ViewData["CurrentFilter"] = searchString;
+            }
+
+            return View(await locations.AsNoTracking().ToListAsync());
         }
 
+        
         // GET: Locations/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Locations == null)
@@ -42,7 +53,9 @@ namespace Breadcrumbs.Controllers
             return View(location);
         }
 
+        
         // GET: Locations/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +66,7 @@ namespace Breadcrumbs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("LocationId,LocationName,StreetNumber,RoadName,City,State,ZipCode,LocationTag,ImgId")] Location location)
         {
             if (ModelState.IsValid)
@@ -64,7 +78,9 @@ namespace Breadcrumbs.Controllers
             return View(location);
         }
 
+        
         // GET: Locations/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Locations == null)
@@ -85,6 +101,7 @@ namespace Breadcrumbs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("LocationId,LocationName,StreetNumber,RoadName,City,State,ZipCode,LocationTag,ImgId")] Location location)
         {
             if (id != location.LocationId)
@@ -116,6 +133,7 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: Locations/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Locations == null)
@@ -135,7 +153,8 @@ namespace Breadcrumbs.Controllers
 
         // POST: Locations/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]        
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Locations == null)

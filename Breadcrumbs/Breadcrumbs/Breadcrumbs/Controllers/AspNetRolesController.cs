@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Breadcrumbs.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Breadcrumbs.Controllers
 {
@@ -19,12 +20,14 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: AspNetRoles
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
               return View(await _context.AspNetRoles.ToListAsync());
         }
 
         // GET: AspNetRoles/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null || _context.AspNetRoles == null)
@@ -43,6 +46,7 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: AspNetRoles/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +57,7 @@ namespace Breadcrumbs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name,NormalizedName,ConcurrencyStamp")] AspNetRole aspNetRole)
         {
             if (ModelState.IsValid)
@@ -65,6 +70,7 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: AspNetRoles/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.AspNetRoles == null)
@@ -85,6 +91,7 @@ namespace Breadcrumbs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id, [Bind("Id,Name,NormalizedName,ConcurrencyStamp")] AspNetRole aspNetRole)
         {
             if (id != aspNetRole.Id)
@@ -116,6 +123,7 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: AspNetRoles/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.AspNetRoles == null)
@@ -136,6 +144,7 @@ namespace Breadcrumbs.Controllers
         // POST: AspNetRoles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             if (_context.AspNetRoles == null)

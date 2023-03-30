@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Breadcrumbs.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Breadcrumbs.Controllers
 {
@@ -19,12 +20,23 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: AspNetUsers
-        public async Task<IActionResult> Index()
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Index(string searchString)
         {
-              return View(await _context.AspNetUsers.ToListAsync());
+            //return View(await _context.AspNetUsers.ToListAsync());
+
+            var aspNetUsers = from u in _context.AspNetUsers select u; ;
+            if (searchString != null)
+            {
+                aspNetUsers = aspNetUsers.Where(u => u.Email.Contains(searchString));
+                ViewData["CurrentFilter"] = searchString;
+            }
+
+            return View(await aspNetUsers.AsNoTracking().ToListAsync());
         }
 
         // GET: AspNetUsers/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null || _context.AspNetUsers == null)
@@ -43,6 +55,7 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: AspNetUsers/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +66,7 @@ namespace Breadcrumbs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] AspNetUser aspNetUser)
         {
             if (ModelState.IsValid)
@@ -65,6 +79,7 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: AspNetUsers/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.AspNetUsers == null)
@@ -85,6 +100,7 @@ namespace Breadcrumbs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id, [Bind("Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] AspNetUser aspNetUser)
         {
             if (id != aspNetUser.Id)
@@ -116,6 +132,7 @@ namespace Breadcrumbs.Controllers
         }
 
         // GET: AspNetUsers/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.AspNetUsers == null)
@@ -136,6 +153,7 @@ namespace Breadcrumbs.Controllers
         // POST: AspNetUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             if (_context.AspNetUsers == null)
